@@ -1,0 +1,34 @@
+<template>
+    <lightning-card>
+        <lightning-tabset>
+            
+            <lightning-tab label="Search Pal">
+                <div  class="slds-m-around_medium">
+                        <lightning-input class = "slds-col slds-size_2-of-8 slds-m-horizontal_medium slds-m-bottom_small" type="text" label="Pal Name:" onkeyup={setName}></lightning-input>
+                    
+                    <br>
+                        <lightning-datatable
+                            hide-checkbox-column="true"
+                            key-field="id"
+                            data={result}
+                            columns={coloumns}
+                            onrowaction={handleRowAction}            
+                        ></lightning-datatable>
+                    <br>
+                </div>
+            </lightning-tab>
+            <lightning-tab maxlength="20" label="Add Pals">
+                <div  class="slds-m-around_medium">
+                <lightning-record-form
+                    object-api-name="Pals__c"
+                    columns="1"
+                    fields={fields}
+                    onsuccess={handleSuccess}
+                    onerror={handleError}
+                    ></lightning-record-form>
+                </div>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+    <c-sendmoney></c-sendmoney>
+</template>

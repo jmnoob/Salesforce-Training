@@ -1,0 +1,59 @@
+<template>
+    <div if:true={isLoading}>
+        <lightning-spinner
+            alternative-text="Loading..." variant="brand" class="slds-is-fixed">
+        </lightning-spinner>
+    </div>
+    <lightning-card>
+        <lightning-tabset>
+            <template if:true={isUser}>
+                <lightning-tab label="Create a Wallet">
+                    <div style="margin: 50px 100px">
+                        <lightning-input 
+                            label="Wallet Name : " 
+                            type="string"   
+                            class="slds-m-bottom_x-small" 
+                            required 
+                            onchange={getWalletName}>
+                        </lightning-input>
+                        <lightning-button 
+                            label="Create" 
+                            variant="brand" 
+                            onclick={insertNewWallet} >
+                        </lightning-button>
+                    </div>
+                </lightning-tab>
+            </template>
+            <template if:false={isUser}>
+                <lightning-tab label="My Wallet">
+                    <lightning-record-view-form
+                    record-id='{getId}'
+                    object-api-name="Wallet__c">
+                    <div class="slds-box">
+                        <lightning-output-field field-name="Name">
+                        </lightning-output-field>
+                        <lightning-output-field field-name="balance__c">
+                        </lightning-output-field>
+                        <lightning-output-field field-name="added_from__c">
+                        </lightning-output-field>
+                        <br>
+                        <lightning-button
+                        class="slds-m-right_small"
+                        label="Add Money"
+                        onclick={handleShowModal}
+                        ></lightning-button>
+
+                        <lightning-button
+                        label="Send Money"
+                        onclick={handleSendMoney}
+                        ></lightning-button>
+                    </div>
+                    </lightning-record-view-form>
+                </lightning-tab>
+               
+            </template>
+        </lightning-tabset>
+
+        <c-addmoney></c-addmoney>
+    </lightning-card>
+</template>

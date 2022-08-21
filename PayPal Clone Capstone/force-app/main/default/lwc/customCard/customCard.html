@@ -1,0 +1,39 @@
+<template>
+    <lightning-card>
+        <lightning-tabset>
+                <template if:false={isHaveCard}>
+                    <lightning-tab label="Register a Card">
+                        <div class="slds-m-around_large">
+                            <lightning-record-form
+                            object-api-name="Card__c"
+                            columns="1"
+                            fields={fields}
+                            onsuccess={handleSuccess}
+                            onerror={handleError}
+                            ></lightning-record-form>
+                        </div>
+                    </lightning-tab>
+                </template>
+            <template if:true={isHaveCard}>
+                <lightning-tab label="My Cards">
+                    <lightning-record-view-form
+                        record-id={getCardId}
+                        object-api-name="Card__c">
+                        <div class="slds-box">
+                            
+                            <lightning-output-field field-name="Card_no__c">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="cvv__c">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="expiry_date__c">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="total_spend__c">
+                            </lightning-output-field>
+                        </div>
+                    </lightning-record-view-form>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </lightning-card>
+    <c-addmoney></c-addmoney>
+</template>

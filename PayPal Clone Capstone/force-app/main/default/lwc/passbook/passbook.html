@@ -1,0 +1,13 @@
+<template>
+    <lightning-card>
+        <div  class="slds-m-around_medium">
+        <lightning-datatable
+            data={passbook.data} 
+            columns={pbcolumn} 
+            key-field="id" 
+            hide-checkbox-column="true"  
+            onrowaction={handleRowAction}>
+        ></lightning-datatable>
+    </div>
+    </lightning-card>
+</template>
